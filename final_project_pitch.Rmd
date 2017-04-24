@@ -1,0 +1,46 @@
+---
+title: "Visualizing Model Fit for Old Faithful Eruption Data"
+author: "Ryan Morton"
+date: "April 24, 2017"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(caret)
+library(randomForest)
+library(plotly)
+```
+
+## The problem
+
+* Comparing models is difficult for many users
+* Direct comparison of models helps the decision making process
+* Sometime the simplest model is just as good or better
+
+## The solution
+
+* [Final Project App](https://morton-analytics.shinyapps.io/data_products_final_project/)
+* Put the models into the same application
+* Seeing the models fitted to the data helps users understand what the model is doing
+* Review goodness of fit and make your decision!
+
+## Linear Model
+
+```{r plotly_lm}
+fit <- train(eruptions ~ waiting, data = faithful, method = "lm")
+plot_ly(faithful, x = ~waiting, y = ~eruptions, type = "scatter", mode = "markers") %>%
+       add_lines(x = ~waiting, y = fitted(fit)) %>%
+       layout(showlegend = FALSE)
+fit$results
+```
+
+## Randowm Forest Model
+
+```{r plotly_rf, warning=FALSE}
+fit <- train(eruptions ~ waiting, data = faithful, method = "rf")
+plot_ly(faithful, x = ~waiting, y = ~eruptions, type = "scatter", mode = "markers") %>%
+       add_lines(x = ~waiting, y = fitted(fit)) %>%
+       layout(showlegend = FALSE)
+fit$results
+```
