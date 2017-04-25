@@ -35,7 +35,7 @@ plot_ly(faithful, x = ~waiting, y = ~eruptions, type = "scatter", mode = "marker
 fit$results
 ```
 
-## Randowm Forest Model
+## Random Forest Model
 
 ```{r plotly_rf, warning=FALSE}
 fit <- train(eruptions ~ waiting, data = faithful, method = "rf")
