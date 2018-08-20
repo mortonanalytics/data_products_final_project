@@ -5,3 +5,5 @@ This application gives the user the ability to quickly compare models using visu
 The application was written in R using the Shiny package.
 
 Models are trained using the caret pacakge.
+
+App available here: https://morton-analytics.shinyapps.io/data_products_final_project/
